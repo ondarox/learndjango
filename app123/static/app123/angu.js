@@ -134,9 +134,9 @@ app.controller('DemoCtrl123', ['$scope', function($scope) {
   $scope.uploadProgress = 0;
 $scope.creds={} ;
 
-$scope.creds.bucket='zxcvbucketdemo123';
-$scope.creds.access_key='AKIAIOUDGWZHB32V2LAQ';
-$scope.creds.secret_key='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';
+$scope.creds.bucket='';
+$scope.creds.access_key='';
+$scope.creds.secret_key='';
 
 console.log($scope.creds.bucket);
 console.log($scope.creds.access_key);
