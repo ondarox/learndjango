@@ -1,0 +1,571 @@
+
+{% load staticfiles %}
+
+
+
+<html>
+<head>
+<title>Picture Stuff123...</title>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">		
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.js">  </script>   
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-resource.js"></script>
+<!---<script src="https://sdk.amazonaws.com/js/aws-sdk-2.3.2.min.js"></script>--->
+<script src="{% static "app123/angu.js" %}" type="text/javascript"></script>
+
+
+<script>
+app = angular.module('demoapp123', []);
+console.log("inside script....");
+app.controller('DemoCtrl123', ['$scope', function($scope) {
+    $scope.num = 222;
+	console.log("inside controller....");
+}]);
+</script>
+	
+<!---start of Amazon S3 test--->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <p>Angular AWS S3 Upload</p>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles -->
+  <script src="{% static "app123/toastr.min.css"%}" type="text/css"></script>
+  <script src="{% static "app123/style.css" %}" type="text/css"></script>
+  <!-- JavaScript Libs -->  
+  <script src="{% static "app123/toastr.min.js" %}" type="text/javascript"></script>
+  <script src="{% static "app123/aws-sdk.min.js" %}" type="text/javascript"></script>
+  <!-- Our JavaScript -->
+  <!--- <script src="{% static "app123/application.js" %}" type="text/javascript"></script>--->
+  <!-- <script src="{% static "app123/js/controllers.js" %}" type="text/javascript"></script>
+	<script src="{% static "app123/js/directives.js" %}" type="text/javascript"></script> --->
+<!---end of Amazon S3 test--->
+</head>
+
+
+
+<body>
+
+		
+<nav class="navbar navbar-default"  style="background: rgb(93, 138, 168); color: white;" >
+ <div class="container-fluid"> 
+ <div class="col-md-3 navbar-left"  >
+    
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">TRENDING456...</a></li>
+      <li><a href="#">OUT</a></li>
+      <li><a href="#">IN</a></li> 
+      <li><a href="#">ALL</a></li> 
+    </ul>
+</div>		
+ <div class="col-md-1 navbar-left"  >
+ {% verbatim %}
+  <div ng-app="demoapp" ng-controller="adddood" >  
+    <ul class="nav navbar-nav">
+	   <li><a href="#">+DOOD+</a></li> 
+    </ul>
+	</div>
+ {% endverbatim %}
+</div>			
+<div class="col-md-4 navbar-centre">
+                    <div class="navbar-form " role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" style="max-width: 400px; width: 400px;border-radius : 10px">
+                          
+                        </div>
+                    </div>
+</div>
+ <div class="col-md-4 navbar-centre">
+ <ul class="nav navbar-nav navbar-right">
+                    
+                    <li><a runat="server" href="~/Account/Login">Log in</a></li>
+					<li><a runat="server" href="~/Account/Register">Register</a></li>
+ </ul>
+ </div>	
+ </div>		  
+</nav>
+
+
+
+
+<div>
+<div class="col-md-1"></div>
+<div class="col-md-10">
+  
+
+<div class="row">
+
+<!--- Adding DOOD--->
+
+
+{% verbatim %}
+<div class="col-md-3"></div>
+
+<div class="col-md-6">
+<div ng-app="demoapp" ng-controller="adddood" >
+  <form role="form">
+  
+  <input type="submit" class="btn btn-info" value="+Dood+" style="background-color: rgb(93, 138, 168)" ng-click="addreview()">{{dummy}}</input>
+  <br><br>
+    <div class="form-group" ng-show="toshow()">
+      
+	  <label for="usr">Title:</label>
+      <input type="text" class="form-control" id="usr">
+	  
+	  <label for="comment">Description:</label>
+      <textarea class="form-control" rows="5" id="comment"></textarea> 
+	  <br>
+	  <input type="submit" class="btn btn-info" value="Upload Image">
+	  
+	
+	
+	  <br><br>
+	  <input type="submit" class="btn btn-info" value="Submit">
+	  
+	  
+	  <!---
+	  <input type="submit" class="btn btn-info" value="Rating" ng-show="toshow()">
+	  <input type="submit" class="btn btn-info" value="Upload Image" ng-show="toshow()">
+	  <br><br>
+	  <input type="submit" class="btn btn-info" value="Submit" ng-show="toshow()">--->
+	  
+	  
+    </div>
+  </form>
+  
+</div>
+</div>
+
+<div class="col-md-3"></div>
+{% endverbatim %}
+
+<!--- End of Adding DOOD--->
+
+
+</div>  
+
+
+
+  <div class="row">
+  {% for p in pmod %}
+  <div class="col-md-3">
+    <div class="thumbnail" style="background-color: #e3e3e3;border-right:3px">
+      
+      <div class="caption">
+        <a href="eventdetails/"><h3>{{ p.name}}</h3></a>
+        <p>...</p>
+        <p><a href="#" class="btn btn-primary" role="button">Invite</a> <a href="#" class="btn btn-default" role="button">Doing It</a></p>
+      </div>
+	<a href="eventdetails/"><img src={{ p.photo.url}} style="width:304px;height:228px;"></a>
+    </div>
+  </div>
+   {% endfor %}
+</div>
+</div>
+<div class="col-md-1"></div>
+</div>
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<hr><hr>
+
+<div class="container" >
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Experiences</a></li>
+  <li role="presentation"><a href="#">About</a></li>
+ 
+</ul>
+
+</div>
+
+<br>
+
+
+
+{% verbatim %}
+
+<div class="container" ng-app="demoapp" ng-controller="contreview" >
+
+
+  <form role="form">
+    <div class="form-group">
+      <label for="comment">Review and/or Add Your Experience...</label>
+	  
+      <textarea class="form-control" rows="5" id="comment" style="background-color: LightGrey" ng-click="addreview()">{{dummy}}</textarea>
+
+	  <input type="submit" class="btn btn-info" value="Rating" ng-show="toshow()">
+	  <input type="submit" class="btn btn-info" value="Upload Image" ng-show="toshow()">
+	  <br><br>
+	  <input type="submit" class="btn btn-info" value="Submit" ng-show="toshow()">
+    </div>
+  </form>
+  
+</div>
+
+{% endverbatim %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ <hr><hr>
+
+ 
+ 
+ 
+ 
+
+
+
+<!---sdfasdf---> 
+
+
+
+
+
+ {% verbatim %}
+  <body ng-app="demoapp">
+<div ng-view></div>
+    <h1>Django Angular</h1>
+	
+	
+<div class="container">
+<h3>DooD Options... </h3>
+<ul class="list-inline">
+    <li><a href="#">Trending</a></li>
+    <li><a href="/app123/viewindoor">Indoors333...</a></li>
+    <li><a href="viewoutdoor">Outdoors...</a></li>
+	<li><a href="{% url 'viewall' %}">All</a></li>
+ </ul>
+</div>
+
+    <div ng-controller="DemoCtrl">
+	<h1>{{myWelcome}}</h1>
+        <div class="data">
+            Click:
+        </div>
+        <button ng-click="save()">Get Time</button>
+        <hr />
+    </div>
+	
+	 <div ng-controller="restctrl">
+	<p>RestController</p>
+	<h1>{{myWelcome2}}</h1>
+	<h1>{{myWelcome3}}</h1>
+		
+        <hr />
+    </div>
+	
+
+	
+</body>
+  {% endverbatim %}
+  
+  
+<form class="bs-example form-horizontal" method="post" action="" enctype="multipart/form-data">{% csrf_token %}
+                      <h2>DooD Stuff</h2><br>
+                      {{ addprojectform.name }}
+                      <h2>Image Upload</h2><br>
+                      {{ addprojectform.photo }}<br>
+                      <input type="submit" class="btn btn-success" value="Add Stuff To Do">
+</form>
+  
+<div class="container">
+  <div class="jumbotron">
+    <h1>My First Bootstrap Page</h1>
+    <p>Resize this responsive page to see the effect!</p> 
+  </div>
+<br><br><br>
+  
+</div>
+
+
+
+  <div class="row">
+  {% for p in pmod %}
+  <div class="col-lg-3">
+    <div class="thumbnail" style="background-color: #e3e3e3;border-right:3px">
+      
+      <div class="caption">
+        <h3>{{ p.name}}</h3>
+        <p>...</p>
+        <p><a href="#" class="btn btn-primary" role="button">Invite</a> <a href="#" class="btn btn-default" role="button">Doing It</a></p>
+      </div>
+	<a href="eventdetails/"><img src={{ p.photo.url}} style="width:304px;height:228px;"></a>
+    </div>
+  </div>
+   {% endfor %}
+</div>
+
+  
+
+<style type="text/css">
+    .bs-example{
+    	margin: 20px;
+    }
+</style>
+
+<div class="container">
+  <h3>DooD Options </h3>
+  <ul class="list-inline">
+    <li><a href="#">Trending</a></li>
+    <li><a href="{% url 'indoors' %}">Indoors</a></li>
+    <li><a href="{% url 'outdoors' %}">Outdoors</a></li>
+	<li><a href="{% url 'all' %}">All</a></li>
+  </ul>
+</div>
+
+    <div class="row">
+        <div class="col-md-8">
+            {% for p in pmod %}
+                <div class="post123">
+				        <div class="bs-example">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">{{ p.name}}</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <p>HTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pages. <a href="http://www.tutorialrepublic.com/html-tutorial/" target="_blank">Learn more.</a></p>
+                    <img src={{ p.photo.url}} style="width:304px;height:228px;">
+				</div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2. What is Bootstrap?</a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>Bootstrap is a powerful front-end framework for faster and easier web development. It is a collection of CSS and HTML conventions. <a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3. What is CSS?</a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="http://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+				
+              
+                       <p>p: {{ p.name}}</p>
+						<br>
+						 <p>p: {{ p.photo.url}}</p>
+						 <br>
+						 <p>p: {{ p.photo}}</p>
+						 <hr> 
+						 
+						 
+                </div>
+            {% endfor %}
+			
+		</div>
+		
+		
+	</div>
+  <hr>
+		 <p>media root....: {{mr}}</p>
+		 <hr>
+		 <hr>
+	<hr>
+	<hr>
+	<hr>
+
+
+
+<!---start of Amazon S3 test--->
+
+{% verbatim %}
+
+<div ng-app="demoapp">
+<div ng-controller="DemoCtrl123">
+
+
+
+<div class="container-fluid">
+    <div class="page-header no-top-marg">
+      <div class="fr author">
+        <a target="_blank" href="http://www.cheynewallace.com">
+          <span>By Cheyne Wallace</span>
+          <img alt="By Cheyne Wallace" class="img-circle left-marg-10" height="40" src="https://secure.gravatar.com/avatar/cf0414cc7a83fabb2b0e6cb79e11e5a5.jpg?s=40" width="40">
+        </a>
+      </div>
+      <h1>AngularJS To S3 Upload <small>With AWS JS SDK</small></h1>
+    </div>
+    <div class="row">
+      <!-- AWS Details-->
+	 
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">Step 1: Input Your AWS Details</h3>
+          </div>
+		  
+
+          <div class="panel-body">
+            <div class="input-group bottom-marg-10">
+              <span class="input-group-addon">ACCESS KEY</span>
+              <input ng-model="creds.access_key" type="text" class="form-control" placeholder="AKIAIOUDGWZHB32V2LAQ">
+            </div>
+            <div class="input-group bottom-marg-10">
+              <span class="input-group-addon">SECRET KEY</span>
+              <input ng-model="creds.secret_key" type="text" class="form-control" placeholder="YdqWUoe1kAnwPjid0AUVryu8+NnQMgbSvulZEchG">
+            </div>
+            <div class="input-group">
+              <span class="input-group-addon">BUCKET</span>
+              <input ng-model="creds.bucket" type="text" class="form-control" placeholder="zxcvbucketdemo123">
+            </div>
+          </div>
+
+	  
+        </div>
+      </div> 
+
+      <!-- The Upload Form -->
+	 
+      <div class="col-md-8">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <select class="fr" ng-model="sizeLimit">
+              <option value="5292880">5MB Upload Limit</option>
+              <option value="10585760">10MB Upload Limit</option>
+              <option value="15878640">15MB Upload Limit</option>              
+            </select>
+            <h3 class="panel-title">Step 2: Upload The File</h3>
+          </div>
+          <div class="panel-body">
+            <input class="bottom-marg-15" type="file" name="file" file></input>
+            <!-- Progress Bar -->
+	
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{ uploadProgress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ uploadProgress }}%;">
+                {{ uploadProgress == 0 ? '' : uploadProgress + '%' }}
+              </div>
+            </div>            
+            <a class="btn btn-primary btn-block btn-lg" ng-click="upload()">Upload</a>
+          </div>
+        </div>
+      </div>     
+	  
+	  
+    </div>
+    <div class="row">     
+      <div class="col-md-12"> 
+        <hr/>       
+        <h3>Features</h3>
+        <ul>
+          <li>Creates Unique Bucket Object Name</li>
+          <li>File Input Directive Binds Attributes To $scope.file</li>
+          <li>Validates File Existence</li>
+          <li>Validates File Size (Use Select Box To Test)</li>
+          <li>Validates AWS Credentials</li>
+        </ul>
+        <hr/>
+        <h3>IAM Policy Warning</h3>
+        <p>
+          Please make sure that if you use this code you create an appropriate IAM account policy to prevent mis-use. Example, a policy like the following would only allow PUT access to the bucket for a specific IAM user. You could also set the bucket objects to automatically expire after 24 hours which would prevent people flooding your account.
+        </p>
+
+<pre class="top-marg-10">
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt126637111000",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::your_bucket_name"
+      ]
+    }
+  ]
+}</pre>
+      <hr/>
+      <h3>Fork This Repo</h3>
+      <p>
+        Want a copy of this app? Fork it now at: <a href="https://github.com/cheynewallace/angular-s3-upload">https://github.com/cheynewallace/angular-s3-upload</a>
+      </p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</div>
+</div>
+ 
+{% endverbatim %}
+ 
+
+
+<!---end of Amazon S3 test--->	
+
+
+
+
+
+
+
+	
+		
+</body>		
+</html>
+
+
+
+
+
+    
